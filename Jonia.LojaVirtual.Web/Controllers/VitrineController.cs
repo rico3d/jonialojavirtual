@@ -7,17 +7,20 @@ using Jonia.LojaVirtual.Dominio.Repositorio;
 
 namespace Jonia.LojaVirtual.Web.Controllers
 {
-    public class ProdutosController : Controller
+    public class VitrineController : Controller
     {
         private ProdutosRepositorio _repositorio;
-
-
+        private const int ProdutosPorPagina = 3;
         //
-        // GET: /Produtos/
-        public ActionResult Index()
+        // GET: /Vitrine/
+        public ActionResult ListaProdutos(int pagina = 1)
         {
             _repositorio = new ProdutosRepositorio();
-            var produtos = _repositorio.Produtos.Take(10);
+            var produtos = _repositorio.Produtos
+                .OrderBy(p => p.Descricao)
+                .Skip((pagina - 1)*ProdutosPorPagina)
+                .Take(ProdutosPorPagina);
+
             return View(produtos);
         }
 	}
