@@ -14,7 +14,7 @@ namespace Jonia.LojaVirtual.Web.HtmlHelpers
 
             StringBuilder resultado = new StringBuilder();
 
-            for (int i = 1; i < paginacao.TotalPagina; i++)
+            for (int i = 1; i <= paginacao.TotalPagina; i++)
             {
                 TagBuilder tag = new TagBuilder("a");
 
@@ -27,7 +27,7 @@ namespace Jonia.LojaVirtual.Web.HtmlHelpers
                     tag.AddCssClass("btn-primary");
                 }
 
-                tag.AddCssClass("btn-default");
+                tag.AddCssClass("btn btn-default");
                 resultado.Append(tag);
 
             }
